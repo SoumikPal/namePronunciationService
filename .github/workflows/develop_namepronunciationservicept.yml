@@ -44,8 +44,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
-          includePatterns:
-           -"*SNAPSHOT.jar"
+          includePatterns: "*SNAPSHOT.jar"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
