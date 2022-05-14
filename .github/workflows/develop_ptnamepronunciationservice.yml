@@ -21,14 +21,16 @@ jobs:
         with:
           java-version: '8'
 
-      - name: Build with Maven
-        run: mvn clean install
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: build/libs
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,4 +52,4 @@ jobs:
           app-name: 'ptNamePronunciationService'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2E507C5C57B4430899207F876C18A4D3 }}
-          package: '*.jar'
+          package: '*SNAPSHOT.jar'
