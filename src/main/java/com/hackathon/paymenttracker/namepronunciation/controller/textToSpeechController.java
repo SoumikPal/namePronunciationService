@@ -56,7 +56,7 @@ public class textToSpeechController {
 		HttpHeaders header = new HttpHeaders();
 		header.set("Authorization", nameRequest.getToken());
 		header.set("Content-Type", "application/ssml+xml");
-		header.set("X-Microsoft-OutputFormat", " audio-16khz-64kbitrate-mono-mp3");
+		header.set("X-Microsoft-OutputFormat", "audio-16khz-64kbitrate-mono-mp3");
 		HttpEntity<String> request = new HttpEntity<String>(content, header);
 		byte[] response = Base64.encodeBase64(restTemplate.postForObject(serviceEndpoint, request, byte[].class));
 		//return new String(response, StandardCharsets.UTF_8);
