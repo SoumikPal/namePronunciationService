@@ -44,7 +44,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
-          includePatterns: "*SNAPSHOT.jar"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -53,4 +52,4 @@ jobs:
           app-name: 'namePronunciationServicePT'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B99285DBDABB443CB27E4C8763D890BE }}
-          package: '*.jar'
+          package: '*SNAPSHOT.jar'
